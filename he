@@ -1,0 +1,75 @@
+package frc.robot;
+
+
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+
+import edu.wpi.first.math.proto.Wpimath;
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
+
+
+/**
+ * The VM is configured to automatically run this class, and to call the functions corresponding to
+ * each mode, as described in the TimedRobot documentation. If you change the name of this class or
+ * the package after creating this project, you must also update the manifest file in the resource
+ * directory.
+ */
+public class Robot extends TimedRobot {
+
+  WPI_VictorSPX onsag = new WPI_VictorSPX(1);
+  WPI_VictorSPX arkasag = new WPI_VictorSPX(2);
+  WPI_VictorSPX onsol = new WPI_VictorSPX(3);
+  WPI_VictorSPX arkasol = new WPI_VictorSPX(4);
+
+  MotorControllerGroup sag = new MotorControllerGroup(onsag, arkasag);
+  MotorControllerGroup sol = new MotorControllerGroup(onsol, arkasol);
+
+  DifferentialDrive hehe = new DifferentialDrive(sag, sol);
+
+  
+  Joystick surus = new Joystick(0);
+
+
+  
+
+  
+  @Override
+  public void robotInit() {
+
+  }
+
+  @Override
+  public void autonomousInit() {
+   
+  }
+
+
+  @Override
+  public void autonomousPeriodic() {
+    
+    hehe.arcadeDrive(-surus.getRawAxis(0), surus.getRawAxis(1));
+
+  }
+    
+  
+
+ 
+  @Override
+  public void teleopInit() {}
+
+
+  @Override
+  public void teleopPeriodic() {
+
+  }
+
+  /** This function is called once each time the robot enters test mode. */
+  @Override
+  public void testInit() {}
+
+  /** This function is called periodically during test mode. */
+  @Override
+  public void testPeriodic() {}
+}
